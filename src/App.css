@@ -1,0 +1,9 @@
+.selectDiv {
+  display: flex;
+  flex-direction: column;
+  margin: 100px;
+}
+.select {
+  height: 50px;
+  font-size: 18px;
+}

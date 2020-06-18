@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.css";
-
+import SelectModes from "./components/SelectModes";
 function App() {
-  return <div className="App">App</div>;
+  return <SelectModes />;
 }
 
 export default App;

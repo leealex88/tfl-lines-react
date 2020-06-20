@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-
+import Mode from "./Mode";
 function SelectModes() {
   const [modes, setModes] = useState([]);
   const [selectedMode, setSelectedMode] = useState("");
 
-  console.log(selectedMode);
   useEffect(() => {
     fetch("https://api.tfl.gov.uk/Line/Meta/Modes")
       .then((resp) => resp.json())
@@ -12,6 +11,7 @@ function SelectModes() {
         setModes(data);
       });
   }, []);
+
   return (
     <div className="selectDiv">
       <select
@@ -24,7 +24,7 @@ function SelectModes() {
           <option key={index}>{mode.modeName}</option>
         ))}
       </select>
-      <p>{selectedMode}</p>
+      {selectedMode && <Mode selectedMode={selectedMode} />}
     </div>
   );
 }

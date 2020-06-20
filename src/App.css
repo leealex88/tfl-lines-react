@@ -1,9 +1,39 @@
+body {
+  font-family: 'Hind',
+    sans-serif;
+
+}
+
+#root {
+  margin: 0px 100px 100px 100px;
+}
+
 .selectDiv {
   display: flex;
   flex-direction: column;
-  margin: 100px;
+
+
 }
+
 .select {
   height: 50px;
   font-size: 18px;
+  margin-bottom: 50px;
+
 }
+
+.app-title {
+  font-size: 28px;
+
+}
+
+
+@media only screen and (max-width: 600px) {
+  #root {
+    margin: 0px 20px 20px 20px;
+  }
+}
+
+/* .header-container {
+  justify-content: center;
+} */

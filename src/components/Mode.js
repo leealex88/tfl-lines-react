@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
-
-function Mode({ selectedMode }) {
-  const [modeDetails, setModeDetails] = useState([]);
-  const [modeId, setSelectedId] = useState("");
-
+import Destination from "./Destination";
+function Mode({
+  selectedMode,
+  modeDetails,
+  setModeDetails,
+  line,
+  setLine,
+  setSelectedId,
+  modeId,
+}) {
   useEffect(() => {
     fetch(`https://api.tfl.gov.uk/Line/Mode/${selectedMode}`)
       .then((resp) => resp.json())
@@ -15,19 +20,26 @@ function Mode({ selectedMode }) {
   console.log("modeDetails", modeDetails);
 
   return (
-    <div className="selectDiv">
-      <select
-        className="select"
-        value={modeId}
-        onChange={(e) => setSelectedId(e.target.value)}
-      >
-        <option value="Choose-a-Mode">Choose a Line...</option>
-        {modeDetails.map((elem) => (
-          <option>{elem.id}</option>
-        ))}
-      </select>
-      <p>you selected line: {modeId}</p>
-    </div>
+    <>
+      {modeDetails.length !== 0 && (
+        <div className="selectDiv">
+          <select
+            className="select"
+            value={modeId}
+            onChange={(e) => setSelectedId(e.target.value)}
+          >
+            <option value="Choose-a-Mode">Choose a Line...</option>
+            {modeDetails.map((elem, index) => (
+              <option key={index}>{elem.id}</option>
+            ))}
+          </select>
+          <p>: {modeId}</p>
+          {modeId && (
+            <Destination modeId={modeId} line={line} setLine={setLine} />
+          )}
+        </div>
+      )}
+    </>
   );
 }
 
